@@ -1,6 +1,38 @@
 #include "main.h"
 
 /**
+  * read_from_file - reads command from text file
+  * @shelldata: struct holding initialized arguments from commanline
+  *            av[1] holds the filename to read command from
+  * @input: buffer to write the read command
+  * @interactive: breaks the shell loop after all cmds contained in file
+                  are executed
+  *
+  * Return: number of chars read from file
+  */
+
+ssize_t read_from_file(shell_data *shelldata, char **input, int *interactive)
+{
+	FILE * fp;
+	ssize_t nread;
+	size_t len = 0;
+
+	printf("Before file open");
+	fp = fopen(shelldata->av[1], "r");
+	printf("\nAfter file open");
+	if (fp == NULL)
+		return (0);
+	nread = getline(input, &len, fp);
+	printf("After file getline");
+
+	fclose(fp);
+
+	*interactive = 0;
+	return (nread);
+}
+
+
+/**
   * rm_newlinechar - Removes newline char from user input
   * @input: input string from user
   *
@@ -57,8 +89,18 @@ void loop_shell(shell_data *shelldata)
 	while (check > 0 && interactive)
 	{
 		input = NULL;
-		check = get_user_input(&input, &interactive);
+		printf("Before loop %s\n", shelldata->av[1]);
+		if (shelldata->av[1] != NULL)
+		{
+			printf("Before loop 2 %s\n", shelldata->av[1]);
+			check = (int) read_from_file(shelldata,
+					&input, &interactive);
+			printf("After loop %s\n", shelldata->av[1]);
+		}
+		else
+			check = get_user_input(&input, &interactive);
 
+		if (!input) continue;
 		/*Check for errors reading user input*/
 		if (check == -1 || check == 0)
 		{

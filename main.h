@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 #define TOK_BUFSIZE 128
 #define TOK_DELIM " \t\r\n\a"
@@ -69,6 +70,7 @@ void rm_newlinechar(char **input);
 /*File stream functions*/
 ssize_t _getline(char **, size_t *, FILE *);
 
+ssize_t read_from_file(shell_data *shelldata, char **input, int *interactive);
 
 /*Memory functions*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);

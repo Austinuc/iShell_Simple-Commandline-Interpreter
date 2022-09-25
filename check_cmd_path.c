@@ -22,6 +22,7 @@ char *check_cmd_path(char *token)
 	char *env_path = NULL, *path = NULL, *next = NULL;
 	list_t *head = NULL;
 
+	if (!token) return (NULL);
 	/*check if token is an absolute path or current dir*/
 	if (*token == '/' || *token == '.')
 	{

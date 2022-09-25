@@ -60,11 +60,12 @@ char **get_tokens(char *input, char *delim)
 	char **tokens = NULL, *token = NULL, *temp = NULL;
 
 	tok_count = count_tokens(input, delim);
-	printf("Token count: %d\n", tok_count);
+	printf("Token count number: %d\n", tok_count);
 
 	token = _strtok_r(input, delim, &temp);
 
 	token = check_cmd_path(token);
+	
 	if (!token)
 		tokens = malloc(sizeof(char *));
 	else
