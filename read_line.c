@@ -16,7 +16,6 @@
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	char *buf;
-	ssize_t len = 0;
 	unsigned int i = 0;
 
 	if (*lineptr == NULL && *n == 0)

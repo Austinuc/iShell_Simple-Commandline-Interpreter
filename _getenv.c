@@ -71,7 +71,7 @@ char *_getenv(const char *name)
 		{
 			value = strtok(NULL, "\0");
 			value = strdup(value);
-			printf("value: %s\n", value);
+/*			printf("value: %s\n", value);*/
 			break;
 		}
 		i++;

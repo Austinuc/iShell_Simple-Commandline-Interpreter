@@ -9,8 +9,9 @@
   *
   * Return: 0 on successful shell exit
   */
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
+	ac = ac;
 	shell_data shelldata;
 
 	init_data(&shelldata, av); /*Initialize shell data object*/

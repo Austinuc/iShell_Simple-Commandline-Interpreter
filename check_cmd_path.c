@@ -33,7 +33,7 @@ char *check_cmd_path(char *token)
 		else
 			return (NULL);
 	}
-	printf("_getenv: ran\n");
+/*	printf("_getenv: ran\n");*/
 	env_path = _getenv("PATH");/*get all dirs in PATH*/
 
 	/*Create a singly linked list of PATH dirs*/

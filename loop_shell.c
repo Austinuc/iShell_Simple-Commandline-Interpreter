@@ -17,13 +17,10 @@ ssize_t read_from_file(shell_data *shelldata, char **input, int *interactive)
 	ssize_t nread;
 	size_t len = 0;
 
-	printf("Before file open");
 	fp = fopen(shelldata->av[1], "r");
-	printf("\nAfter file open");
 	if (fp == NULL)
 		return (0);
 	nread = getline(input, &len, fp);
-	printf("After file getline");
 
 	fclose(fp);
 
@@ -89,13 +86,10 @@ void loop_shell(shell_data *shelldata)
 	while (check > 0 && interactive)
 	{
 		input = NULL;
-		printf("Before loop %s\n", shelldata->av[1]);
 		if (shelldata->av[1] != NULL)
 		{
-			printf("Before loop 2 %s\n", shelldata->av[1]);
 			check = (int) read_from_file(shelldata,
 					&input, &interactive);
-			printf("After loop %s\n", shelldata->av[1]);
 		}
 		else
 			check = get_user_input(&input, &interactive);
@@ -128,7 +122,7 @@ void loop_shell(shell_data *shelldata)
 
 		temp = get_filename(shelldata->input);
 		shelldata->args[0] = strdup(temp);
-		printf("Filename: %s\n", shelldata->args[0]);
+/*		printf("Filename: %s\n", shelldata->args[0]);*/
 		cpid = fork(); /*Create a child process*/
 
 		if (cpid == 0) /*Execute command in the child process*/
@@ -136,7 +130,7 @@ void loop_shell(shell_data *shelldata)
 		else
 		{
 			wait(NULL);
-			if (!interactive)
+			if (!interactive)/*else, continue the loop*/
 				return;
 			check = 10;
 			shelldata->status = 0;
