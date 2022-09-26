@@ -6,7 +6,7 @@ This is a simple UNIX command interpreter based on bash and Sh.
 
 **iShell** is an sh-compatible command line interpreter that executes commands read from the standard input or from a file.
 
-### Invocation:
+### Invocation
 
 **Compilation:**
 ```
@@ -36,7 +36,7 @@ $ echo "echo 'Hello World!'" | ./iShell
 $
 ```
 
-When **iShell** is invoked with a command line argument, **iShell** takes the first argument as a file to read commands for execution.
+When **iShell** is invoked with a command line argument, **iShell** takes the first argument as the name of the file to read commands from.
 
 Example:
 
